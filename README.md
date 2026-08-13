@@ -2,21 +2,42 @@
 
 Personal Docker setup for Laravel development (and to help my bad memory).
 
-# Important
-  - This setup is for **Postrgresql** databases and **don't have** a **redis** and laravel **queue** container
-  - If you want to use this you will need implement them in the compose file and php dockerfile
+## Create Laravel project
 
-## Create Laravel project:
+Create the docker file
+
 ```bash
-docker compose exec php bash
+cp compose.dev.yml compose.yml
 ```
-Inside php container
+
+Entering the php container:
+
 ```bash
-composer create-project laravel/laravel .
+docker compose run --rm --interactive php bash
+```
+
+Setup base project:
+
+```bash
+composer create-project laravel/laravel app
+```
+
+Move everything to root folder
+
+```bash
+mv app/* .
+mv app/.* .
+rmdir app
+
+Basic laravel setup:
+
+```bash
 php artisan key:generate
 php artisan migrate
 ```
 
-Endpoints:
-- Laravel: http://localhost:8080
-- pgAdmin: http://localhost:5050
+After creating everything you can up everything normally:
+
+```bash
+docker compose up -d
+```
