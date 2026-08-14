@@ -28,6 +28,7 @@ Move everything to root folder
 mv app/* .
 mv app/.* .
 rmdir app
+```
 
 Basic laravel setup:
 
