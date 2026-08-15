@@ -14,9 +14,20 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libpq-dev \
     && apt-get autoremove -y && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-RUN docker-php-ext-install pdo pdo_pgsql mbstring exif pcntl bcmath intl gd opcache
+RUN docker-php-ext-install \
+    pdo \
+    pdo_pgsql \
+    mbstring \
+    exif \
+    pcntl \
+    bcmath \
+    intl \
+    gd \
+    opcache
 
 RUN pecl install xdebug && docker-php-ext-enable xdebug
+
+RUN pecl install redis && docker-php-ext-enable redis
 
 RUN groupadd -g ${GID} web \
     && useradd -u ${UID} -m -s /bin/bash -g web web

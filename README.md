@@ -4,6 +4,12 @@ Personal Docker setup for Laravel development (and to help my bad memory).
 
 ## Create Laravel project
 
+Remove existing git from template:
+
+```bash
+rm -rf .git
+```
+
 Create the docker file
 
 ```bash
@@ -19,15 +25,16 @@ docker compose run --rm --interactive php bash
 Setup base project:
 
 ```bash
-composer create-project laravel/laravel app
+composer create-project laravel/laravel src
 ```
 
-Move everything to root folder
+Move everything to root folder (completely optional, but I like it this way. Just remeber to change the `WORKDIR`
+in the docker file if you do this):
 
 ```bash
-mv app/* .
-mv app/.* .
-rmdir app
+mv src/* .
+mv src/.* .
+rmdir src
 ```
 
 Basic laravel setup:
