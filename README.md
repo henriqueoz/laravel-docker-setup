@@ -19,7 +19,7 @@ cp compose.dev.yml compose.yml
 Entering the php container:
 
 ```bash
-docker compose run --rm --interactive php bash
+docker compose run --rm -it --entrypoint /bin/bash php
 ```
 
 Setup base project:
@@ -28,8 +28,9 @@ Setup base project:
 composer create-project laravel/laravel src
 ```
 
-Move everything to root folder (completely optional, but I like it this way. Just remeber to change the `WORKDIR`
-in the docker file if you do this):
+(Optional) move the files to the root of the project:
+
+If you want to do in this way, remember to change wokring directory and source volume bind in your compose file.
 
 ```bash
 mv src/* .

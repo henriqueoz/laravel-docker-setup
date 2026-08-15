@@ -29,11 +29,7 @@ RUN pecl install redis && docker-php-ext-enable redis
 
 RUN mkdir -p /home/web/.composer
 
-WORKDIR /var/www/html
-
-RUN chown -R web:web /var/www
-
-USER web
+WORKDIR /var/www/html/
 
 ENTRYPOINT ["php-fpm", "-F"]
 
