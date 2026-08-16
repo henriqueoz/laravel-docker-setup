@@ -2,6 +2,8 @@
 
 Personal Docker setup for Laravel development (and to help my bad memory).
 
+This setup expects Laravel >=13 and PHP >=8.5.
+
 ## Create Laravel project
 
 Remove existing git from template:
@@ -25,7 +27,7 @@ docker compose run --rm -it --entrypoint /bin/bash php
 Setup base project:
 
 ```bash
-composer create-project laravel/laravel src
+composer create-project laravel/laravel .
 ```
 
 (Optional) move the files to the root of the project:
