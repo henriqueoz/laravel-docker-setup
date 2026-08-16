@@ -13,7 +13,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libonig-dev \
     libxml2-dev \
     libpq-dev \
+    libicu-dev \
+    libjpeg62-turbo-dev \
+    libfreetype6-dev \
     && rm -rf /var/lib/apt/lists/*
+
+RUN docker-php-ext-configure gd \
+    --with-freetype \
+    --with-jpeg
 
 RUN docker-php-ext-install \
     pdo_pgsql \
