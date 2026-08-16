@@ -8,7 +8,6 @@ volumes:
 
 services:
   php:
-    container_name: php
     environment:
       HOME: /tmp
     build:
@@ -25,7 +24,6 @@ services:
 
   nginx:
     image: nginx:stable-alpine
-    container_name: nginx
     ports:
       - "80:80"
     volumes:
@@ -38,7 +36,6 @@ services:
 
   database:
     image: postgres:18
-    container_name: postgres
     ports:
       - "5432:5432"
     volumes:
@@ -58,7 +55,6 @@ services:
 
   redis:
     image: redis:8-alpine
-    container_name: redis
     command: redis-server --appendonly yes --requirepass ${REDIS_PASSWORD}
     volumes:
       - redis-data:/data
@@ -66,7 +62,6 @@ services:
       - internal
 
   worker:
-    container_name: worker
     build:
       context: .
       dockerfile: Dockerfile
