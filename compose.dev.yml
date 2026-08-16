@@ -8,8 +8,6 @@ volumes:
 
 services:
   php:
-    environment:
-      HOME: /tmp
     build:
       context: .
       dockerfile: Dockerfile
