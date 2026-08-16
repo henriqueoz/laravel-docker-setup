@@ -1,7 +1,5 @@
 FROM php:8.5-fpm
 
-COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
-
 RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
     unzip \
@@ -35,7 +33,22 @@ RUN pecl install xdebug && docker-php-ext-enable xdebug
 
 RUN pecl install redis && docker-php-ext-enable redis
 
-RUN mkdir -p /home/web/.composer
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+
+ARG UID=1000
+ARG GID=1000
+
+RUN groupadd -g ${GID} web \
+    && useradd \
+    -u ${UID} \
+    -g ${GID} \
+    -m \
+    -s /bin/bash \
+    web
+
+RUN chown -R web:web /var/www/html
+
+USER web
 
 WORKDIR /var/www/html/
 
