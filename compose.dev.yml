@@ -16,8 +16,8 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./:/var/www/html
-      - ./docker/php/conf.d/development.ini:/usr/local/etc/php/conf.d/development.ini
-      - ./docker/php/conf.d/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
+      - ./docker/php/development.ini:/usr/local/etc/php/conf.d/development.ini:ro
+      - ./docker/php/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini:ro
     depends_on:
       - database
     networks:
