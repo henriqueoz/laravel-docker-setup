@@ -27,12 +27,10 @@ docker compose run --rm -it --entrypoint /bin/bash php
 Setup base project:
 
 ```bash
-composer create-project laravel/laravel .
+composer create-project laravel/laravel src
 ```
 
-(Optional) move the files to the root of the project:
-
-If you want to do in this way, remember to change wokring directory and source volume bind in your compose file.
+Moving everything from src to the root folder:
 
 ```bash
 mv src/* .

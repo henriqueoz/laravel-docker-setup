@@ -9,14 +9,13 @@ volumes:
 services:
   php:
     container_name: php
-    working_dir: /var/www/html/src
     environment:
       HOME: /tmp
     build:
       context: .
       dockerfile: Dockerfile
     volumes:
-      - ./src:/var/www/html
+      - ./:/var/www/html
       - ./docker/php/conf.d/development.ini:/usr/local/etc/php/conf.d/development.ini
       - ./docker/php/conf.d/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
     depends_on:
