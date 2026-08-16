@@ -52,5 +52,5 @@ USER web
 
 WORKDIR /var/www/html/
 
-ENTRYPOINT ["php-fpm", "-F"]
+CMD ["php-fpm", "-F"]
 
